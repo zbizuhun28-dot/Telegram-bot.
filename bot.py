@@ -20,7 +20,6 @@ def main():
 
     app.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, hide_join))
 
-app.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, welcome_new_members))
    
  print("Bot running...")
     app.run_polling()
@@ -47,3 +46,14 @@ async def welcome_new_members(update: Update, context: ContextTypes.DEFAULT_TYPE
                 chat_id=update.effective_chat.id,
                 text=f"👑 Welcome {user.first_name} to My Kingdom.\n\nThis is King Abel Room — enjoy your time and feel free."
             )
+def main():
+    app = Application.builder().token(TOKEN).build()
+
+    # 👇 handler goes HERE
+    app.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, welcome_new_members))
+
+    print("Bot running...")
+    app.run_polling()
+
+if __name__ == "__main__":
+    main()
