@@ -20,7 +20,9 @@ def main():
 
     app.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, hide_join))
 
-    print("Bot running...")
+app.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, welcome_new_members))
+   
+ print("Bot running...")
     app.run_polling()
 
 if __name__ == "__main__":
