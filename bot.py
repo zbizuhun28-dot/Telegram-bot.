@@ -31,3 +31,17 @@ if __name__ == "__main__":
             await update.message.delete()
         except:
             pass
+async def welcome_new_members(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.message and update.message.new_chat_members:
+        for user in update.message.new_chat_members:
+            try:
+                # Delete the default join message
+                await update.message.delete()
+            except:
+                pass
+
+            # Send custom welcome message
+            await context.bot.send_message(
+                chat_id=update.effective_chat.id,
+                text=f"👑 Welcome {user.first_name} to My Kingdom.\n\nThis is King Abel Room — enjoy your time and feel free."
+            )
